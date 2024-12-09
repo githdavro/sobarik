@@ -1,0 +1,98 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Show') }} {{ __('Pengajuan Skripsi') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-full mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="w-full">
+                    <div class="sm:flex sm:items-center">
+                        <div class="sm:flex-auto">
+                            <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-gray-200">
+                                {{ __('Show') }} {{ __('Pengajuan Skripsi') }}</h1>
+                            <p class="mt-2 text-sm text-gray-700 dark:text-gray-400">{{ __('Details of') }}
+                                {{ __('Pengajuan Skripsi') }}.</p>
+                        </div>
+                        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                            <a type="button" href="{{ route('pe-skripsis.index') }}"
+                                class="block rounded-md bg-indigo-600 dark:bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 dark:hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{ __('Back') }}</a>
+                        </div>
+                    </div>
+
+                    <div class="flow-root">
+                        <div class="mt-8 overflow-x-auto">
+                            <div class="inline-block min-w-full py-2 align-middle">
+                                <div class="mt-6 border-t border-gray-100 dark:border-gray-700">
+                                    <dl class="divide-y divide-gray-100 dark:divide-gray-700">
+                                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
+                                                {{ __('Nama Mahasiswa') }}</dt>
+                                            <dd
+                                                class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-400 sm:col-span-2 sm:mt-0">
+                                                {{ $peSkripsi->nama_mahasiswa }}</dd>
+                                        </div>
+                                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
+                                                {{ __('Nim') }}</dt>
+                                            <dd
+                                                class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-400 sm:col-span-2 sm:mt-0">
+                                                {{ $peSkripsi->nim }}</dd>
+                                        </div>
+                                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
+                                                {{ __('Judul Sementara') }}</dt>
+                                            <dd
+                                                class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-400 sm:col-span-2 sm:mt-0">
+                                                {{ $peSkripsi->judul_sementara }}</dd>
+                                        </div>
+                                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
+                                                {{ __('Dosen Pembimbing') }}</dt>
+                                            <dd
+                                                class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-400 sm:col-span-2 sm:mt-0">
+                                                {{ $peSkripsi->dosen_pembimbing }}</dd>
+                                        </div>
+                                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
+                                                {{ __('File') }}
+                                            </dt>
+                                            <dd
+                                                class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-400 sm:col-span-2 sm:mt-0">
+                                                @if ($peSkripsi->files && $peSkripsi->files->isNotEmpty())
+                                                    <ul class="list-disc pl-5">
+                                                        @foreach ($peSkripsi->files as $file)
+                                                            <li>
+                                                                <a href="{{ Storage::url($file->file_path) }}"
+                                                                    target="_blank"
+                                                                    class="text-blue-500 hover:underline dark:text-blue-400">
+                                                                    {{ $file->file_name }}
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @else
+                                                    {{ __('Tidak ada file yang diunggah.') }}
+                                                @endif
+                                            </dd>
+                                        </div>
+
+                                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
+                                                {{ __('Jenis Skripsi') }}</dt>
+                                            <dd
+                                                class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-400 sm:col-span-2 sm:mt-0">
+                                                {{ $peSkripsi->jenis_skripsi }}</dd>
+                                        </div>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
